@@ -8,5 +8,6 @@ export async function POST(request: Request) {
   const requestUrl = new URL(request.url);
   const redirectUrl = new URL("/sign-in", requestUrl.origin);
 
-  return NextResponse.redirect(redirectUrl);
+  // Use 303 status to force GET method on redirect
+  return NextResponse.redirect(redirectUrl, 303);
 }
