@@ -5,8 +5,7 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -22,6 +21,41 @@ model User {
   name      String?
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+  wishes    Wish[]
 
   @@map("users")
+}
+
+// Wish (やりたいこと) model
+model Wish {
+  id          String    @id @default(uuid()) @db.Uuid
+  userId      String    @map("user_id") @db.Uuid
+  title       String
+  description String?
+  category    Category  @default(OTHER)
+  priority    Priority  @default(MEDIUM)
+  completed   Boolean   @default(false)
+  deadline    DateTime?
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("wishes")
+  @@index([userId])
+}
+
+enum Category {
+  STUDY    // 勉強
+  HOBBY    // 趣味
+  TRAVEL   // 旅行
+  HEALTH   // 健康
+  CAREER   // キャリア
+  OTHER    // その他
+}
+
+enum Priority {
+  HIGH
+  MEDIUM
+  LOW
 }
