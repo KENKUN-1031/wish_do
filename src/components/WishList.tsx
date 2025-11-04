@@ -179,8 +179,8 @@ export default function WishList() {
       {/* Form */}
       {showForm && (
         <div className="bg-white rounded-xl shadow-lg p-6">
-          <h2 className="text-xl font-bold mb-4">
-            {editingWish ? "編集" : "新規追加"}
+          <h2 className="text-2xl font-bold mb-6 text-gray-900">
+            {editingWish ? "✏️ やりたいことを編集" : "✨ 新しいやりたいことを追加"}
           </h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
@@ -192,7 +192,7 @@ export default function WishList() {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-3 py-2 bg-white text-gray-900 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 placeholder:text-gray-500"
                 placeholder="例: 富士山に登る"
               />
             </div>
@@ -204,7 +204,7 @@ export default function WishList() {
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-3 py-2 bg-white text-gray-900 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 placeholder:text-gray-500"
                 rows={3}
                 placeholder="詳細な説明を書いてください..."
               />
@@ -218,7 +218,7 @@ export default function WishList() {
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value as Wish["category"])}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full px-3 py-2 bg-white text-gray-900 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
                 >
                   {Object.entries(categoryLabels).map(([value, label]) => (
                     <option key={value} value={value}>
@@ -235,7 +235,7 @@ export default function WishList() {
                 <select
                   value={priority}
                   onChange={(e) => setPriority(e.target.value as Wish["priority"])}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full px-3 py-2 bg-white text-gray-900 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
                 >
                   {Object.entries(priorityLabels).map(([value, label]) => (
                     <option key={value} value={value}>
@@ -253,7 +253,7 @@ export default function WishList() {
                   type="date"
                   value={deadline}
                   onChange={(e) => setDeadline(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full px-3 py-2 bg-white text-gray-900 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
                 />
               </div>
             </div>
